@@ -39,6 +39,12 @@ gulp.task('default',() => {
 });
 ```
 
+However, parameters can be put in an array:
+
+```
+var stream = pipeConcat([stream1,stream2,...]);
+```
+
 **Notice:** streams in `pipeConcat` run async, not one by one, so in fact, `end` event is the longest one's, from the beginning to the end costs only the longest pipe line's time.
 
 ## Development
