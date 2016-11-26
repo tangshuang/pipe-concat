@@ -1,6 +1,6 @@
 import {Stream} from 'stream';
 
-default export function PipeConcat(...streams) {
+export default function PipeConcat(...streams) {
 	var stream = new Stream();
 	stream.setMaxListeners(0);
 	stream.writable = stream.readable = true;
