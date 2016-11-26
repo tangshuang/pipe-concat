@@ -1,6 +1,6 @@
 import {Stream} from 'stream';
 
-module.exports = function(...streams) {
+default export function PipeConcat(...streams) {
 	var stream = new Stream();
 	stream.setMaxListeners(0);
 	stream.writable = stream.readable = true;
@@ -41,3 +41,4 @@ module.exports = function(...streams) {
 	
 	return stream;
 }
+module.exports = PipeConcat;
