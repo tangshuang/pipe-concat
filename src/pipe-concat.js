@@ -9,23 +9,35 @@ export default function PipeConcat(...streams) {
 	if(streams[0] instanceof Array) {
 		streams = streams[0];
 	}
-	
-	var endCount = 0;
+
 	var streamsLength = streams.length;
+
+	function emitEvent(event) {
+		var count = 0;
+
+		return function(item) {
+			var success = false;
+			
+			item.on(event,() => {
+				if(success) {
+					return;
+				}
+				success = true;
+
+				count ++;
+				if(count >= streamsLength) {
+					stream.emit(event);
+				}
+			});
+		}
+	}
+
+	var emitEventEnd = emitEvent('end');
+	var emitEventFinish = emitEvent('finish');
 	streams.forEach(item => {
 		item.pipe(stream, {end: false});
-		var ended = false;
-		item.on('end', () => {
-			if(ended) {
-				return;
-			}
-			ended = true;
-
-			endCount ++;
-			if(endCount >= streamsLength) {
-				stream.emit('end');
-			}
-		});
+		emitEventEnd(item);
+		emitEventFinish(item);
 	});
 
 	stream.write = function (data) {
