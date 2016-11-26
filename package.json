@@ -1,0 +1,23 @@
+{
+  "name": "pipe-concat",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/pipe-concat.js",
+  "scripts": {
+    "babel": "babel src/pipe-concat.js -o dist/pipe-concat.js"
+  },
+  "keywords": [],
+  "author": "tangshuang",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tangshuang/pipe-concat.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tangshuang/pipe-concat/issues"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-preset-latest": "^6.16.0"
+  }
+}
